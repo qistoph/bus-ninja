@@ -10,7 +10,7 @@ CONFIG_WATCHDOG=y
 # I2C support
 CONFIG_BUS_I2C=y
 # SPI support
-#CONFIG_BUS_SPI=y
+CONFIG_BUS_SPI=y
 # Hardware UART driver
 CONFIG_HW_UART=y
 # Console on hw_uart
