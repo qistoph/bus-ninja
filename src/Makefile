@@ -1,6 +1,9 @@
 ifeq ($(BOARD),ARDUINO)
 include config-arduino.mk
 else
+ifeq ($(BOARD),ARDUINODUE)
+include config-arduino_due.mk
+else
 ifeq ($(BOARD),TEENSY)
 include config-teensy.mk
 else
@@ -9,6 +12,7 @@ include config-leonard_pirate.mk
 else
 # Default to arduino
 include config-arduino.mk
+endif
 endif
 endif
 endif

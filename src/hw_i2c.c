@@ -58,6 +58,15 @@
 #define SCL_OUT         PORTC
 #define SDA_IN          PINC
 #define SCL_IN          PINC
+#elif __AVR_ATmega328P__
+#define SDA             PINC4        // SDA pin
+#define SCL             PINC5        // SCL pin
+#define SDA_DDR         DDRC
+#define SCL_DDR         DDRC
+#define SDA_OUT         PORTC
+#define SCL_OUT         PORTC
+#define SDA_IN          PINC
+#define SCL_IN          PINC
 #elif __AVR_AT90USB162__
 #define SDA             PB2        // SDA pin
 #define SCL             PB1        // SCL pin
@@ -146,8 +155,8 @@ void hw_i2c_init(void)
 #else
     SDA_DDR &= ~_BV(SDA);       // release SDA
     SCL_DDR &= ~_BV(SCL);       // release SCL
-    SDA_OUT &= ~_BV(SDA);
-    SCL_OUT &= ~_BV(SCL);
+    SDA_OUT &= ~_BV(SDA);       // disable internal pullup
+    SCL_OUT &= ~_BV(SCL);       // disable internal pullup
 
     hold_bus = FALSE;
 #endif

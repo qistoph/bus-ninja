@@ -10,7 +10,7 @@
 
 void hw_uart_init(void)
 {
-#if __AVR_ATmega168__
+#if __AVR_ATmega168__ || __AVR_ATmega328P__
     UBRR0 = (F_CPU / (16UL * BAUD)) - 1;
     UCSR0B = _BV(TXEN0) | _BV(RXEN0);
 #elif __AVR_AT90USB162__
@@ -24,7 +24,7 @@ void hw_uart_init(void)
 void hw_uart_tick(void)
 {
 #ifdef CONFIG_HW_UART_CONSOLE
-#if __AVR_ATmega168__
+#if __AVR_ATmega168__ || __AVR_ATmega328P__
     if ((UCSR0A&(1<<RXC0)) != 0)
     {
         uint8_t c = UDR0;
@@ -44,7 +44,7 @@ void hw_uart_tick(void)
 
 void hw_uart_putc(char c)
 {
-#if __AVR_ATmega168__
+#if __AVR_ATmega168__ || __AVR_ATmega328P__
     while (bit_is_clear(UCSR0A, UDRE0))
         watchdog_reset();
     UDR0 = c;
