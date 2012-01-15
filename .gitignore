@@ -1,1 +1,7 @@
 .DS_Store
+src/*.o
+src/*.bak
+src/ninja.eep
+src/ninja.elf
+src/ninja.hex
+src/ninja.map
